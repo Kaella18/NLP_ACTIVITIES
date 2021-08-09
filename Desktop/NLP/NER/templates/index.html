@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  {{ dropzone.load_css() }}
+  {{ dropzone.style('border-radius:50px; min-height:300px; margin: 10;background-color: #FDEFEF; font-weight:bold;padding:80px 0px;text-align:center') }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap">
+  <style>
+.button {
+  display: inline;
+  border-radius: 4px;
+  background-color: #628395;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  padding: 20px;
+  width: 50%;
+  transition: all 0.5s;
+  cursor: pointer;
+  float: right;
+  margin: 5px;
+  margin-top: -50px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+</head>
+<body style="background-color: #082032;">
+  <section class="text-start" style="margin-bottom: 100px;">
+    <div class="container" style="padding: 12px;">
+        <div class="row" style="padding: 12px 0px;">
+            <div class="col">
+                <h1 style="padding: 0px;font-family: 'Poppins';text-align: center;color:#f9f9f9">Upload a PDF file</h1>
+            </div>
+        </div>
+        <div class="row" id="month-filter" style="padding: 0px;background-color: #082032;">
+            <div class="col" style="padding: 12px;">
+                <div class="card-body" style="font-family: 'Poppins';width: 800px;margin:auto;">
+                  {{ dropzone.create(action='upload') }}
+                  {{ dropzone.load_js() }}
+                  {{ dropzone.config() }}
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  
+  <!-- <section>
+    <div class="container">
+      <h1 style="font-family: 'Poppins';">Upload PDF file</h1>
+      <div class="container" style="width: 800px; font-family: 'Poppins';">
+        {{ dropzone.create(action='upload') }}
+        {{ dropzone.load_js() }}
+        {{ dropzone.config() }}
+      </div>
+    </div>
+  </section> -->
+  <div class="d-lg-flex justify-content-lg-center" style="margin: auto">
+    <button class="btn btn-success button" type="button" style="width: 50%;letter-spacing: 1px;font-family: 'Poppins';">
+      <span>
+        <a style="color: white;  text-decoration: none;" href="{{ url_for('search') }}">Extract</a>
+      </span>
+    </button>
+  </div>
+<!-- <button class="button" style="vertical-align:middle" ><span>
+<a style="color: white;  text-decoration: none;" href="{{ url_for('search') }}">Extract</a></span></button> -->
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+<h3>Auto Suggest App<h3/>
+<form class="form-predict" method="POST" action="" >
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label"></label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+<button type="button" class="btn btn-primary">Predict</button>
+</form>
+<table>
+  <thead>  
+  <tr>
+    <th>#</th>
+    <th>Word</th>
+    <th>Frequency Count</th>
+  </tr>
+  <thead>
+  <tbody>
+      {% for res in result %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{result[0]}}</td>
+        <td>{{result[1]}}</td>
+      </tr>
+      {% endfor%}
+  </tbody>
+</table>
+
+</body>
+
+</html>

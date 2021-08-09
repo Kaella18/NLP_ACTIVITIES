@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&amp;display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body style="padding: 100px;font-family: Courier New, monospace;">
+    <section>
+        <div class="container">
+            <div class="row" style="margin-bottom: 5px;">
+                <div class="col">
+                    <!-- <h1 style="color:#CF0000">Noun Phrase </h1> <span>or</span> <h1 style="color:#43658B">Verb Phrase</h1> -->
+                    <p style="color:blue;font-weight:bold;font-size:3em;">Noun Phrases 
+                        <span style="color:black;font-weight:bold;">or</span> 
+                        <span style="color:#CF0000;font-weight:bold;">Verb Phrases</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col">
+                    <form id="form" method="POST" action="/get-sentence">
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col" style="margin-bottom: 10px;">
+                                <label class="form-label" style="margin-bottom: 10px;">Type your sentence:</label>
+                                <textarea id="sentence" name="sentence" class="form-control" style="margin-bottom: 15px;" rows="4"></textarea>
+                                <div class="d-lg-flex justify-content-lg-center">
+                                    <button class="btn btn-primary text-uppercase" id="btnCheck" type="button" style="width: 10%;letter-spacing: 1px;"><strong>Check</strong></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <h4>Output:</h4>
+                    <p id="final_str"></p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/jquery.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $("#form").submit(function(e){
+                $.ajax({
+                    type: "POST",
+                    url: "/get-sentence",
+                    data: { sentence: $("#sentence").val() },
+                    success: function(data){
+                        $("#final_str").html(data);
+                    },
+                    error: function(){
+                        alert('Failed');
+                    }
+                });
+                e.preventDefault();
+            });
+            
+            $("#btnCheck").click(function() {
+                $("#form").submit();
+            });
+        });
+    </script>
+</body>
+</html>
